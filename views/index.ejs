@@ -1,0 +1,41 @@
+<%- include('partials/head.ejs') %>
+<body style="background-color: rgb(250, 241, 234);">
+    <%- include('partials/Navbar.ejs') %>
+
+    <div class="container mt-5">
+        <% if(locals.data) { %> 
+            <div class="row">
+                <% data.forEach((val) => { %>
+                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                        <div class="card shadow-sm border-0">
+                            <a href="<%= val.url %>" target="_blank" class="text-decoration-none text-dark">
+                                <img src="<%= val.urlToImage %>" class="card-img-top" alt="<%= val.title %>" style="height: 200px; object-fit: cover;"/>
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= val.title %></h5>
+                                    <p class="card-text truncate"><%= val.description %></p>
+                                    <a href="<%= val.url %>" class="btn btn-primary w-100" data-mdb-ripple-init>Read More</a>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+    </div>
+
+    <style>
+        .truncate {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 2; /* Adjust the number of lines */
+        }
+        .card {
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</body>
+</html>
